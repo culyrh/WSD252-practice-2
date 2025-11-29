@@ -90,4 +90,45 @@ public class UserController {
         return ResponseEntity
                 .ok(ApiResponse.success(result));
     }
+
+    // GET 1: 전체 사용자 조회
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<UserDto>>> getAllUsers() {
+        List<UserDto> users = new ArrayList<>();
+
+        // 비밀번호 제거하고 반환
+        for (UserDto user : store.values()) {
+            UserDto response = new UserDto();
+            response.setId(user.getId());
+            response.setUserId(user.getUserId());
+            response.setName(user.getName());
+            response.setEmail(user.getEmail());
+            users.add(response);
+        }
+
+        return ResponseEntity
+                .ok(ApiResponse.success(users));
+    }
+
+    // GET 2: 특정 사용자 조회 - id로
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<UserDto>> getUserById(@PathVariable Long id) {
+        UserDto user = store.get(id);
+
+        if (user == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error("ID " + id + "에 해당하는 사용자를 찾을 수 없습니다"));
+        }
+
+        // 비밀번호 제거
+        UserDto response = new UserDto();
+        response.setId(user.getId());
+        response.setUserId(user.getUserId());
+        response.setName(user.getName());
+        response.setEmail(user.getEmail());
+
+        return ResponseEntity
+                .ok(ApiResponse.success(response));
+    }
 }
