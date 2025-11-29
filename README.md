@@ -12,7 +12,7 @@
 | Language | Java 17 |
 | Framework | Spring Boot 3.4.12 |
 | Build Tool | Gradle |
-| Architecture | MVC 패턴 (Controller + DTO) |
+| Architecture | MVC (Controller + DTO) |
 
 <br>
 
@@ -73,7 +73,8 @@ src/main/java/com/example/wsdpractice/
 
 ### 5xx (서버 오류)
 - **500 Internal Server Error**: 서버 내부 오류
-<br>
+
+- <br>
 
 ## 미들웨어
 
@@ -113,23 +114,4 @@ URI: /api/v1/users/login
   "data": null,
   "message": "에러 메시지"
 }
-```
-<br>
-
-## 실행 방법
-
-### 1. 프로젝트 클론
-```bash
-git clone https://github.com/culyrh/WSD25-practice-2
-cd WSD25-practice-2
-```
-
-### 2. 실행
-```bash
-./gradlew bootRun
-```
-
-### 3. 접속
-```
-http://localhost:8080
 ```
